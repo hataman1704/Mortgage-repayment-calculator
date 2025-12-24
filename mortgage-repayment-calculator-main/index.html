@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Mortgage repayment calculator</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+  <!--<link rel="stylesheet" href="./css/style_cpl.css">-->
+  <link rel="stylesheet" href="./css/style.css">
+
+</head>
+<body>
+
+  <!-- Mortgage Calculator -->
+  <div class="mortgageCalculator" id="mortgageCalculator">
+    <!-- Input data part -->
+    <div class="input_data">
+      <header class="input_data_header">
+        <h4>Mortgage Calculator</h4>
+        <div class="clearAllBtn">Clear All</div>
+      </header>
+
+      <!-- Mortgage Amount -->
+      <div class="mortgageAmount">
+        <label for="mortgageAmount">Mortgage Amount</label>
+        <div class="label_input_focus">
+          <span class="prefix">£</span>
+          <input type="text" id="mortgageAmount">
+        </div>
+        <small class="mortgageAmount_error"></small>
+      </div>
+
+      <!-- Mortgage Term & Interest Rate -->
+      <div class="term_rate_group">
+        <div class="term_rate mortgageTerm">
+          <label for="mortgage_term">Mortgage Term</label>
+          <div class="term_input label_input_focus">
+            <input type="text" id="mortgage_term">
+            <div class="div_years suffix">years</div>
+          </div>
+          <small class="term_error">This field is required</small>
+        </div>
+
+        <div class="term_rate interestRate">
+          <label for="interest_rate">Interest Rate</label>
+          <div class="rate_input label_input_focus">
+            <input type="text" id="interest_rate">
+            <div class="div_percent suffix">%</div>
+          </div>
+          <small class="interest_error">This field is required</small>
+        </div>
+
+      </div>
+      
+      <!-- Mortgage Type -->
+      <div class="mortgage_type">
+        <label for="mortgage_type">Mortgage Type</label>
+        <label class="repayment label_input" for="repayment_input">
+          <input type="radio" id="repayment_input" name="mortgageType" value="repayment">
+          <span>Repayment</span>
+        </label>
+
+        <label class="interest_only label_input" for="interest_only_input">
+          <input type="radio" id="interest_only_input" name="mortgageType" value="interest_only">
+          <span>Interest Only</span>
+        </label>
+        <small class="mortgage_type_error"></small>
+      </div>
+      
+      <!-- Calculate Repayments button -->
+      <button class="btn_calculateRepayments" type="button">
+        <img src="./assets/images/icon-calculator.svg" alt="icon-calculator">
+        Calculate Repayments
+      </button>
+    </div>
+    <!--***** END INPUT DATA PART *****-->
+
+
+    <!-- Result show -->
+    <div class="result_show ">
+
+      <!-- Empty results start -->
+      <div class="empty_results_start">
+        <div class="image_illustration">
+          <img src="./assets/images/illustration-empty.svg" alt="illustration-empty">
+        </div>
+        <h4>Results shown here</h4>
+
+        <span>
+          Complete the form and click “calculate repayments” to see what 
+          your monthly repayments would be.
+        </span>
+        <!-- Empty results end -->
+      </div>
+      <!------------------------------------------------------------------>
+      
+      
+      <!-- Completed results start -->
+      <div class="completed_results">
+        <h3>Your results</h3>
+
+        <p>
+        Your results are shown below based on the information you provided. 
+        To adjust the results, edit the form and click “calculate repayments” again.
+        </p>
+
+        <div class="monthly_repayment">
+          <h4>Your monthly repayments</h4>
+          <div class="monthly_repaymnet_money"></div>
+          <div class="total_repay">Total you'll repay over the term</div>
+          <div class="total_repay_money"></div>
+        </div>
+        <!-- Completed results end -->
+      </div>
+      <!------------------------------------------------------------------>
+    </div>
+    <!--***** END RESULTS SHOW PART *****-->
+
+  </div>
+  <!------------------------------ END --------------------------------------->
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Hataman</a>.
+  </div>
+  <script src="./javascript/mortgageCal.js"></script>
+  <script src="./javascript/testvalue.js"></script>
+</body>
+</html>

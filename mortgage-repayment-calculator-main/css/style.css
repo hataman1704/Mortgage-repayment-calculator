@@ -1,0 +1,572 @@
+/*------------------------------------------
+    GLOBAL VARIABLE --> Global
+-------------------------------------------*/
+:root {
+    /* ## Colors 
+
+        ### Primary */
+
+        --Lime: hsl(61, 70%, 52%);
+        --Lime_alpha: hsla(61, 70%, 52%, 0.4);
+        --Red: hsl(4, 69%, 50%);
+
+      /*### Neutral */
+
+        --White: hsl(0, 0%, 100%);
+        --Slate_100: hsl(202, 86%, 94%);
+        --Slate_300: hsl(203, 41%, 72%);
+        --Slate_500: hsl(200, 26%, 54%);
+        --Slate_700: hsl(200, 24%, 40%);
+        --Slate_900: hsl(202, 55%, 16%);
+}
+/* End declare global variable */
+
+/*------------------------------------------
+    FONT --> Global
+-------------------------------------------*/
+@font-face {
+    font-family: 'Plus_Jakarta_Sans';
+    src: url(../fonts/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf) format('truetype');
+}
+/*-----------------------------------------
+     Reset CSS default --> Global
+-------------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Plus_Jakarta_Sans';
+    background-color: var(--Slate_100);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.label_input {
+    width: 100%;
+    height: 48px;
+    border: solid 1px var(--Slate_700);
+    border-radius: 4px;
+}
+
+input {
+    border: none;
+    height: 100%;
+    min-width: 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+input:focus {
+    border: transparent;
+    outline: none;
+    box-shadow: none;
+}
+
+.label_input_focus {
+    transition: border-color ease 0.2s;
+}
+
+.label_input_focus:focus-within {
+    border-color: var(--Lime);
+}
+
+.label_input_focus:focus-within .prefix,
+.label_input_focus:focus-within .suffix {
+    background-color: var(--Lime);
+}
+
+small {
+    margin-top: 12px;
+}
+/*------------------------------------------
+    <!-- Mortgage Calculator --> Global
+-------------------------------------------*/
+.mortgageCalculator {
+    width: 376px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--White);
+}
+
+/*------------------------------------------
+     <!-- Input data part --> Global
+-------------------------------------------*/
+.input_data {
+    padding: 24px;
+}
+.input_data_header h4 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--Slate_900);
+}
+
+.input_data_header div {
+    color: var(--Slate_700);
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.input_data_header div:hover {
+    color: var(--Slate_500);
+}
+
+/*------------------------------------------
+     <!-- Mortgage Amount --> Global
+-------------------------------------------*/
+.mortgageAmount {
+    margin-top: 24px;
+    
+}
+
+.mortgageAmount label {
+    color: var(--Slate_700);
+    font-weight: 500;
+}
+
+.mortgageAmount div {
+    margin-top: 12px;
+    border: solid 1px var(--Slate_700);
+    border-radius: 6px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.mortgageAmount span {
+    width: 45px;
+    height: 100%;
+    color: var(--Slate_700);
+    font-size: 18px;
+    font-weight: 700;
+    background: var(--Slate_100);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color ease 0.2s;
+}
+
+.mortgageAmount input {
+    border: none;
+    height: 100%;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--Slate_900);
+    background-color: var(--White);
+    padding-left: 18px;
+    flex: 1;
+}
+
+/*----------------------------------------------------
+     <!-- Mortgage Term & Interest Rate --> Global
+------------------------------------------------------*/
+.term_rate {
+    margin-top: 24px;
+}
+
+.term_rate label {
+    margin-top: 12px;
+    color: var(--Slate_700);
+    font-weight: 500;
+}
+
+.term_input,
+.rate_input {
+    margin-top: 12px;
+    padding-left: 18px;
+    height: 48px;
+    border: solid 1px var(--Slate_700);
+    border-radius: 6px;
+    display: flex;
+    overflow: hidden;
+}
+
+.term_input input,
+.rate_input input {
+    border: none;
+    height: 100%;
+    color: var(--Slate_900);
+    font-weight: 700;
+    flex: 1;
+}
+
+.term_input div,
+.rate_input div {
+    height: 100%;
+    background-color: var(--Slate_100);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--Slate_700);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color ease 0.2s;
+}
+
+.div_years { 
+    width: 80px; 
+}
+.div_percent { 
+    width: 45px;
+}
+
+/*------------------------------------------
+     <!-- Mortgage Type --> Global
+-------------------------------------------*/
+.mortgage_type { 
+    margin-top: 24px;
+    position: relative;
+}
+
+.repayment,
+.interest_only {
+    margin-top: 12px;
+    position: relative;
+    overflow: hidden;
+    border: solid 1px var(--Slate_700);
+    border-radius: 6px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--Slate_700);
+}
+
+.repayment::after,
+.interest_only::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--Lime);
+    opacity: 0;
+    transition: opacity ease-in 0.5s;
+    z-index: 0;
+}
+
+.repayment input, 
+.interest_only input {
+    margin: 0 20px;
+    transition: opacity 0.2 ease;
+}
+
+.repayment:has(input:checked)::after,
+.interest_only:has(input:checked)::after {
+    opacity: 0.4;
+}
+
+.repayment input,
+.repayment span,
+.interest_only input,
+.interest_only span {
+    position: relative;
+    z-index: 1;
+}
+
+.mortgage_type label { 
+    color: var(--Slate_700);
+    font-weight: 500;
+}
+
+input[type="radio"] {
+    transform: scale(1.5);
+    accent-color: var(--Slate_900);
+}
+
+.repayment span,
+.interest_only span {
+    color: var(--Slate_900);
+    font-weight: 700;
+}
+
+/*------------------------------------------
+     <!-- Mortgage Type --> Global
+-------------------------------------------*/
+.btn_calculateRepayments {
+    margin-top: 24px;
+    height: 54px;
+    width: 310px;
+    background-color: var(--Lime);
+    border: none;
+    border-radius: 27px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--Slate_900);
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.btn_calculateRepayments:hover {
+    opacity: 0.5;
+}
+
+.btn_calculateRepayments:active {
+    transform: scale(0.95);
+}
+
+.btn_calculateRepayments img {
+    margin-right: 10px;
+}
+
+/*------------------------------------------
+    <!-- Error message --> Global
+-------------------------------------------*/
+.mortgageAmount_error,
+.term_error,
+.interest_error,
+.mortgage_type_error {
+    display: none;
+    color: var(--Red);
+}
+
+/*<!-- Mortgage Amount error message --> Global */
+.mortgageAmount.error span {
+  background-color: var(--Red);
+  color: var(--White);
+}
+.mortgageAmount.error div {
+    border-color: var(--Red);
+}
+.mortgageAmount.error .mortgageAmount_error {
+  display: block;
+}
+
+/*<!-- Mortgage Term & Interest Rate  error message --> Global */
+.mortgageTerm.error .div_years,
+.interestRate.error .div_percent {
+    background-color: var(--Red);
+    color: var(--White);
+}
+
+.mortgageTerm.error .label_input_focus,
+.interestRate.error .label_input_focus {
+    border-color: var(--Red);
+}
+
+.mortgageTerm.error .term_error,
+.interestRate.error .interest_error {
+    display: block;
+}
+
+/*<!-- Mortgage Type -->*/
+.mortgage_type.error .mortgage_type_error {
+    display: block;
+}
+
+
+/*--------<!--***** END INPUT DATA PART *****-->-------*/
+
+/*------------------------------------------
+    <!-- Result show --> Global
+-------------------------------------------*/
+.result_show {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: var(--Slate_900);
+}
+
+/*------------------------------------------
+    <!-- Empty results start --> Global
+-------------------------------------------*/
+.empty_results_start {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.empty_results_start div {
+    margin-top: 42px;
+}
+
+.image_illustration { align-self: center; }
+
+.empty_results_start h4 {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--Slate_100);
+    align-self: center;
+}
+
+.empty_results_start span {
+    margin: 24px 0 42px 0;
+    font-weight: 500;
+    color: var(--Slate_300);
+    text-align: center;
+}
+
+/*------------------------------------------
+    <!-- Completed results start --> Global
+-------------------------------------------*/
+.completed_results {
+    padding: 24px;
+    display: none; /*flex*/
+    flex-direction: column;
+}
+
+.completed_results h3 {
+    margin-top: 12px;
+    color: var(--White);
+    font-size: 24px;
+}
+
+.completed_results p {
+    margin-top: 24px;
+    color: var(--Slate_300);
+}
+
+.monthly_repayment {
+    
+    width: 100%;
+    margin-top: 24px;
+    padding: 24px;
+    background-color: #0e2431;
+    border-radius: 8px;
+    border-top: solid 4px var(--Lime);
+}
+
+.monthly_repayment h4 {
+    color: var(--Slate_300);
+    font-weight: 500;
+}
+
+.monthly_repaymnet_money {
+    margin-top: 12px;
+    font-size: 58px;
+    font-weight: 600;
+    color: var(--Lime);
+    
+}
+
+.monthly_repaymnet_money::after {
+    content: "";
+    display: block;
+    margin-top: 24px;
+    border-top: solid 1px var(--Slate_700);
+    opacity: 0.5;
+}
+
+.total_repay {
+    margin-top: 36px;
+    color: var(--Slate_300);
+    font-weight: 500;
+}
+
+.total_repay_money {
+    margin-top: 12px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--White);
+}
+
+/*------------------------------------------
+    <!-- attribution --> Global
+-------------------------------------------*/
+.attribution {
+    margin-top: 24px;
+}
+
+/*--------<!--***** END SHOW RESULT PART *****-->-------*/
+
+/*------------------------------------------
+    <!-- DESKTOP SCREEN --> Responsive
+-------------------------------------------*/
+@media (min-width: 1024px) {
+    /*------------------------------------------
+        <!-- Mortgage Calculator --> Desktop
+    -------------------------------------------*/
+    .mortgageCalculator {
+        flex-direction: row;
+        width: 1000px;
+        border-radius: 24px;
+        overflow: hidden;
+    }
+
+    /*------------------------------------------
+        <!-- Input data part --> Desktop
+    -------------------------------------------*/
+    .input_data {
+        width: 500px;
+        padding: 40px;
+    }
+
+    .input_data_header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: end;
+    }
+
+    /*------------------------------------------
+        <!-- Mortgage Amount --> Desktop
+    -------------------------------------------*/
+    .mortgageAmount {
+        flex: 1;
+    }
+
+    /*-------------------------------------------------
+        <!-- Mortgage Term & Interest Rate --> Desktop
+    ---------------------------------------------------*/
+    .term_rate_group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .term_rate {
+        width: 200px;
+    }
+    /*--------<!--***** END INPUT DATA PART - Desktop *****-->-------*/
+
+    
+    /*------------------------------------------
+    <!-- Result show --> Desktop
+    -------------------------------------------*/
+    .result_show {
+        margin-top: 0;
+        padding: 40px;
+        border-bottom-left-radius: 80px;
+    }
+
+    /*------------------------------------------
+        <!-- Empty results start --> Desktop
+    -------------------------------------------*/
+    .empty_results_start {
+        margin-top: 80px;
+        display: flex; 
+    }
+
+    /*------------------------------------------
+        <!-- completed_results --> Desktop
+    -------------------------------------------*/
+    .completed_results {
+        display: none;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .completed_results h3 {
+        margin-top: 12px;
+    }
+
+    .monthly_repayment {
+        margin-top: 40px;
+    }
+}

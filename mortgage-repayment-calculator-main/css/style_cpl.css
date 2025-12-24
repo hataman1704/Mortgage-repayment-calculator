@@ -1,0 +1,495 @@
+/*------------------------------------------
+    GLOBAL VARIABLE
+-------------------------------------------*/
+:root {
+    /* Primary */
+    --Lime: hsl(61, 70%, 52%);
+    --Lime_alpha: hsla(61, 70%, 52%, 0.4);
+    --Red: hsl(4, 69%, 50%);
+
+    /* Neutral */
+    --White: hsl(0, 0%, 100%);
+    --Slate_100: hsl(202, 86%, 94%);
+    --Slate_300: hsl(203, 41%, 72%);
+    --Slate_500: hsl(200, 26%, 54%);
+    --Slate_700: hsl(200, 24%, 40%);
+    --Slate_900: hsl(202, 55%, 16%);
+}
+
+/*------------------------------------------
+    FONT
+-------------------------------------------*/
+@font-face {
+    font-family: 'Plus_Jakarta_Sans';
+    src: url(../fonts/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf)
+    format('truetype');
+}
+
+/*------------------------------------------
+    RESET
+-------------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*------------------------------------------
+    GLOBAL ELEMENT
+-------------------------------------------*/
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Plus_Jakarta_Sans';
+    background-color: var(--Slate_100);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input:focus {
+    outline: none;
+    border: transparent;
+    box-shadow: none;
+}
+.mortgageCalculator {
+    display: flex;
+    background-color: var(--White);
+}
+
+/*------------------------------------------
+    INPUT DATA HEADER
+-------------------------------------------*/
+.input_data_header h4 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--Slate_900);
+}
+
+.input_data_header div {
+    color: var(--Slate_700);
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.input_data_header div:hover {
+    color: var(--Slate_500);
+}
+
+/*------------------------------------------
+    MORTGAGE AMOUNT
+-------------------------------------------*/
+.mortgageAmount label {
+    color: var(--Slate_700);
+    font-weight: 500;
+}
+
+.mortgageAmount div {
+    margin-top: 12px;
+    border: solid 1px var(--Slate_700);
+    border-radius: 6px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.mortgageAmount span {
+    width: 45px;
+    height: 100%;
+    color: var(--Slate_700);
+    font-size: 18px;
+    font-weight: 700;
+    background: var(--Slate_100);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mortgageAmount input {
+    border: none;
+    height: 100%;
+    font-weight: 700;
+    color: var(--Slate_900);
+    padding-left: 18px;
+    flex: 1;
+}
+
+/*------------------------------------------
+    TERM + RATE
+-------------------------------------------*/
+.term_rate label {
+    margin-top: 12px;
+    color: var(--Slate_700);
+    font-weight: 500;
+}
+
+.term_input,
+.rate_input {
+    margin-top: 12px;
+    padding-left: 18px;
+    height: 48px;
+    border: solid 1px var(--Slate_700);
+    border-radius: 6px;
+    display: flex;
+    overflow: hidden;
+}
+
+.term_input input,
+.rate_input input {
+    border: none;
+    height: 100%;
+    color: var(--Slate_900);
+    font-weight: 700;
+    flex: 1;
+}
+
+.term_input div,
+.rate_input div {
+    height: 100%;
+    background-color: var(--Slate_100);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--Slate_700);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div_years { width: 80px; }
+.div_percent { width: 45px; }
+
+/*------------------------------------------
+    MORTGAGE TYPE
+-------------------------------------------*/
+.mortgage_type { 
+    margin-top: 24px;
+    position: relative;
+}
+
+.repayment::after,
+.interest_only::after {
+    position: absolute;
+    transition: background-color border-color ease-in 0.5s;
+}
+
+.repayment input, 
+.interest_only input {
+    transition: opacity;
+}
+
+.repayment:has(input:checked),
+.interest_only:has(input:checked) {
+    background-color: var(--Lime_alpha);
+    border-color: var(--Lime);
+    opacity: 0.8; 
+}
+
+.mortgage_type label { 
+    color: var(--Slate_700);
+    font-weight: 500;
+}
+
+.repayment,
+.interest_only {
+    margin-top: 12px;
+    border: solid 1px var(--Slate_700);
+    border-radius: 6px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--Slate_700);
+}
+
+.repayment input,
+.interest_only input {
+    margin: 0 20px;
+}
+
+input[type="radio"] {
+    transform: scale(1.5);
+    accent-color: var(--Slate_900);
+}
+
+.repayment span,
+.interest_only span {
+    color: var(--Slate_900);
+    font-weight: 700;
+}
+
+
+/*------------------------------------------
+    CALCULATE BTN
+-------------------------------------------*/
+.calculateRepayments {
+    margin-top: 44px;
+    height: 54px;
+    width: 310px;
+    background-color: var(--Lime);
+    border: none;
+    border-radius: 27px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--Slate_900);
+}
+
+.calculateRepayments img {
+    margin-right: 10px;
+}
+
+/*------------------------------------------
+    RESULT SHOW
+-------------------------------------------*/
+.result_show {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: var(--Slate_900);
+}
+
+/* Empty result */
+.empty_results_start {
+    display: flex;
+    flex-direction: column;
+}
+
+.image_illustration { align-self: center; }
+
+.empty_results_start h4 {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--Slate_100);
+    align-self: center;
+}
+
+.empty_results_start span {
+    margin-top: 24px;
+    font-weight: 500;
+    color: var(--Slate_300);
+    text-align: center;
+}
+
+.completed_results {
+        display: none;
+}
+
+.attribution {
+        margin-top: 24px;
+}
+
+/*------------------------------------------
+    DISPLAY RESULT CALCULATOR
+-------------------------------------------*/
+/* Empty result */
+.empty_results_start {
+    display: flex;
+    flex-direction: column;
+}
+
+.image_illustration { align-self: center; }
+
+.empty_results_start {
+    display: none;
+}
+
+.completed_results {
+    padding: 24px;
+}
+
+.completed_results h3 {
+    margin-top: 24px;
+    color: var(--White);
+    font-size: 24px;
+}
+
+.completed_results p {
+    margin-top: 24px;
+    color: var(--Slate_300);
+}
+
+.monthly_repayment {
+    
+    width: 100%;
+    margin-top: 24px;
+    padding: 24px;
+    background-color: #0e2431;
+    border-radius: 8px;
+    border-top: solid 4px var(--Lime);
+}
+
+.monthly_repayment h4 {
+    color: var(--Slate_300);
+    font-weight: 500;
+}
+
+.monthly_repaymnet_money {
+    font-size: 44px;
+    font-weight: 600;
+    color: var(--Lime);
+    
+}
+
+.monthly_repaymnet_money::after {
+    content: "";
+    display: block;
+    margin-top: 12px;
+    border-top: solid 1px var(--Slate_700);
+    
+}
+
+.total_repay {
+    margin-top: 24px;
+    color: var(--Slate_300);
+}
+
+.total_repay_money {
+    margin-top: 12px;
+    font-size: 24px;
+    color: var(--White);
+}
+
+/*------------------------------------------
+    RESPONSIVE DESKTOP
+-------------------------------------------*/
+@media (min-width: 1024px) {
+
+    .mortgageCalculator {
+        width: 1000px;
+        border-radius: 24px;
+        overflow: hidden;
+    }
+    /*------------------------------------------------------
+        Input data part (DESKTOP RESPONSIVE)
+    --------------------------------------------------------*/
+
+    .input_data {
+        padding: 40px;
+        flex: 1;
+    }
+
+    .input_data_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+    }
+
+
+    /*------------------------------------------------------
+        Mortgage Amount (DESKTOP RESPONSIVE)
+    --------------------------------------------------------*/
+
+    .mortgageAmount {
+        margin-top: 40px;
+    }
+
+    .mortgageAmount input {
+        font-size: 18px;
+    }
+
+    /*------------------------------------------------------
+        Mortgage Term & Interest Rate (DESKTOP RESPONSIVE)
+    --------------------------------------------------------*/
+    .term_rate_group {
+        margin-top: 24px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .term_rate {
+        width: 200px;
+    }
+
+    .term_rate input {
+        min-width: 0;
+        font-size: 18px;
+    }
+
+    /*------------------------------------------------------
+        Result show (DESKTOP RESPONSIVE)
+    --------------------------------------------------------*/
+    .result_show {
+        padding: 40px;
+        border-bottom-left-radius: 80px;
+    }
+
+    .image_illustration {
+        margin-top: 110px;
+    }
+
+    .empty_results_start span {
+        margin-bottom: 110px;
+    }
+}
+
+/*------------------------------------------
+    RESPONSIVE MOBILE
+-------------------------------------------*/
+@media (max-width: 1023px) {
+    .mortgageCalculator {
+        flex-direction: column;
+        width: 375px;
+    }
+
+    /*------------------------------------------------------
+        Input data part (MOBILE RESPONSIVE)
+    --------------------------------------------------------*/
+    .input_data {
+        padding: 24px;
+    }
+
+    .input_data_header h4,
+    .input_data_header div {
+        margin-top: 12px;
+    }
+
+    /*------------------------------------------------------
+        Mortgage Amount (MOBILE RESPONSIVE)
+    --------------------------------------------------------*/
+    .mortgageAmount {
+        margin-top: 24px;
+    }
+
+    /*------------------------------------------------------
+        Mortgage Term & Interest Rate (MOBILE RESPONSIVE)
+    --------------------------------------------------------*/
+    .term_rate {
+        margin-top: 24px;
+    }
+
+    /*------------------------------------------------------
+        Calculate Repayments (MOBILE RESPONSIVE)
+    --------------------------------------------------------*/
+    .calculateRepayments {
+        margin-top: 24px;
+    }
+
+    /*------------------------------------------------------
+        Result show (MOBILE RESPONSIVE)
+    --------------------------------------------------------*/
+    .result_show {
+        margin-top: 12px;
+    }
+
+    /*------------------------------------------------------
+        Empty results start (MOBILE RESPONSIVE)
+    --------------------------------------------------------*/
+    .image_illustration {
+        margin-top: 24px;
+    }
+
+    .empty_results_start span {
+        margin-bottom: 32px;
+        line-height: 24px;
+    }
+    
+}
+
+
