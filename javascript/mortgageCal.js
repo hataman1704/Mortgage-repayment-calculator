@@ -25,28 +25,56 @@ clearErrorOnClick(mortgageTerm);
 clearErrorOnClick(interestRate);
 clearErrorRadioChecked(mortgageType);
 
+/* Format Input Mortgage Amount - ex: 300000 -> 300,000*/
+const amountInput = document.querySelector('#mortgageAmount');
+
+amountInput.addEventListener('input', (event) => {
+    let value = event.target.value;
+
+    // 1️⃣ Xoá dấu phẩy trước khi xử lý
+    value = value.replace(/,/g, '');
+
+    // 2️⃣ Chỉ cho phép số và dấu .
+    value = value.replace(/[^0-9.]/g, '');
+
+    // 3️⃣ Chỉ cho phép 1 dấu .
+    const parts = value.split('.');
+    if (parts.length > 2) {
+        value = parts[0] + '.' + parts.slice(1).join('');
+    }
+
+    // 4️⃣ Format phần nguyên
+    if (value === '') {
+        event.target.value = '';
+        return;
+    }
+
+    const [integerPart, decimalPart] = value.split('.');
+
+    const formattedInteger = new Intl.NumberFormat('en-US').format(integerPart);
+
+    event.target.value = decimalPart !== undefined
+        ? `${formattedInteger}.${decimalPart}`
+        : formattedInteger;
+});
+
 /* Calculate and Show results */
 calculateRepayments.addEventListener('click', function() {
 
     //Check Mortgage Amount input
     var mortgageAmount_input = mortgageAmount.querySelector('input');
     if (checkNumberString(mortgageAmount_input.value)) {
-        mortgageAmountMoney = Number(mortgageAmount_input.value);
+        mortgageAmountMoney = checkNumberString(mortgageAmount_input.value);
         mortgageAmount.classList.remove('error');
     } else {
-        if (mortgageAmount_input.value == '') {
-            mortgageAmount_error.innerText = empty_message_error;
-
-        } else {
-            mortgageAmount_error.innerText = number_message_error;
-        }
+        mortgageAmount_error.innerText = empty_message_error;
         mortgageAmount.classList.add('error');
     }
 
     //Check Mortgage Term input
     var mortgageTerm_input = mortgageTerm.querySelector('input');
     if (checkNumberString(mortgageTerm_input.value)) {
-        mortgageTermYears = Number(mortgageTerm_input.value);
+        mortgageTermYears = checkNumberString(mortgageTerm_input.value);
         mortgageTerm.classList.remove('error');
     } else {
         if (mortgageTerm_input.value =='') {
@@ -60,7 +88,7 @@ calculateRepayments.addEventListener('click', function() {
     //Check Mortgage Term input
     var interestRate_input = interestRate.querySelector('input');
     if (checkNumberString(interestRate_input.value)) {
-        interestRatePercent = Number(interestRate_input.value);
+        interestRatePercent = checkNumberString(interestRate_input.value);
         interestRate.classList.remove('error');
     } else {
         if (interestRate_input.value == '') {
@@ -157,14 +185,10 @@ clearAllBtn.addEventListener('click', function() {
 /*------------------------------------------------------------------
                     FUNCTION CHECK INPUT VALUE
 --------------------------------------------------------------------*/
-var checkNumberString = function (checkString) {
-    inputString = checkString.trim();
-    if (!isNaN(inputString)) {
-        if (Number(inputString) > 0) {
-            return Number(inputString);
-        } else {
-            return false;
-        }
+var checkNumberString = function(checkString) {
+    let inputNumber = Number(checkString.replace(/,/g, ''));
+    if(inputNumber > 0) {
+        return inputNumber;
     } else {
         return false;
     }
